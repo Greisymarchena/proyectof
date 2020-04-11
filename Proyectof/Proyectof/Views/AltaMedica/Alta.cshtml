@@ -1,0 +1,115 @@
+﻿@model Proyectof.Models.Ingresos
+
+@{
+    ViewBag.Title = "Alta";
+}
+
+<h2>Dar de alta al paciente</h2>
+
+
+@using (Html.BeginForm("Create","AltaMedica"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Ingresos</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idIngreso)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.idPaciente, "idPaciente", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("idPaciente", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idPaciente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.idHabitacion, "idHabitacion", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("idHabitacion", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idHabitacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="fechaIngreso" id="fechaIngreso" value="@Model.fecha" />
+            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha de salida</label>
+        <div class="col-md-10">
+            <input class="form-control" type="date" name="fechaSalida" id="fechaSalida" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="monto" id="monto" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Calcular" name="calcular" id="calcular" class="btn btn-danger" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Dar de alta" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $("#calcular").click(function () {
+
+            f1 = $('#fechaIngreso').val().substr(0, 9);
+            f2 = $('#fechaSalida').val();
+
+            a = moment(f1).format();
+            b = a.substr(0, 10);
+
+            const date = b;
+            const [year, day, month] = date.split('-');
+
+            c = (year + "-" + month + "-" + day);
+
+            var fecha1 = moment(c);
+            var fecha2 = moment(f2);
+
+            var d = (fecha2.diff(fecha1, 'days'));
+
+            var TH = $('#idHabitacion').val();
+
+            if (TH = 1) {
+                $('#monto').val(d * 250);
+            }
+            else if (TH = 2) {
+
+                $('#monto').val(d * 450);
+            }
+            else {
+                $('#monto').val(d * 650);
+            }
+
+        })
+
+    </script>
+}
+
+

@@ -42,6 +42,20 @@ namespace Proyectof.Controllers
             return View(altaMedica);
         }
 
+        public ActionResult Alta(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Pacientes pacientes = db.Pacientes.Find(id);
+            if (pacientes == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pacientes);
+        }
+
         // GET: AltaMedica/Create
         public ActionResult Create()
         {
