@@ -259,6 +259,7 @@
     <Content Include="Views\Pacientes\Details.cshtml" />
     <Content Include="Views\Pacientes\Edit.cshtml" />
     <Content Include="Views\Pacientes\Index.cshtml" />
+    <Content Include="Views\AltaMedica\NewIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

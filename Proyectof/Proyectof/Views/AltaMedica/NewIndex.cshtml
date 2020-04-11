@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Proyectof.Models.Ingresos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Seleccionar paciente para dar de alta</h2>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pacientes.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pacientes.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            Habitacion
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.ActionLink("Seleccionar", "Alta", new { id = item.idIngreso })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pacientes.nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pacientes.cedula)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Habitaciones.numero)
+    </td>
+
+
+</tr>
+    }
+
+</table>

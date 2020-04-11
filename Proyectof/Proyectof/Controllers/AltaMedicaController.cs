@@ -21,6 +21,12 @@ namespace Proyectof.Controllers
             return View(altaMedica.ToList());
         }
 
+        public ActionResult NewIndex()
+        {
+            var ingresos = db.Ingresos.Include(i => i.Habitaciones).Include(i => i.Pacientes);
+            return View(ingresos.ToList());
+        }
+
         // GET: AltaMedica/Details/5
         public ActionResult Details(int? id)
         {
