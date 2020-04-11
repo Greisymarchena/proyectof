@@ -48,12 +48,14 @@ namespace Proyectof.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacientes pacientes = db.Pacientes.Find(id);
-            if (pacientes == null)
+            Ingresos ingresos = db.Ingresos.Find(id);
+            if (ingresos == null)
             {
                 return HttpNotFound();
             }
-            return View(pacientes);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "numero", ingresos.idHabitacion);
+            ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
+            return View(ingresos);
         }
 
         // GET: AltaMedica/Create

@@ -39,7 +39,7 @@ namespace Proyectof.Controllers
         // GET: Ingresos/Create
         public ActionResult Create()
         {
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion");
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "numero");
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula");
             return View();
         }
@@ -75,7 +75,7 @@ namespace Proyectof.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "idHabitacion", ingresos.idHabitacion);
+            ViewBag.idHabitacion = new SelectList(db.Habitaciones, "idHabitacion", "numero", ingresos.idHabitacion);
             ViewBag.idPaciente = new SelectList(db.Pacientes, "idPaciente", "cedula", ingresos.idPaciente);
             return View(ingresos);
         }

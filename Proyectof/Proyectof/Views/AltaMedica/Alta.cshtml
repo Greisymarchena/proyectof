@@ -36,8 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="text" name="fechaIngreso" id="fechaIngreso" value="@Model.fecha" />
-            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="text" class="form-control" name="fechaIngreso" id="fechaIngreso" value="@Model.fecha" />
             @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -52,7 +51,7 @@
     <div class="form-group">
         <label class="control-label col-md-2">Monto</label>
         <div class="col-md-10">
-            <input class="form-control" type="text" name="monto" id="monto" />
+            <input class="form-control" type="text" name="monto" id="monto" readonly />
         </div>
     </div>
 
@@ -60,7 +59,7 @@
         <div class="col-md-offset-2 col-md-10">
             <input type="button" value="Calcular" name="calcular" id="calcular" class="btn btn-danger" />
         </div>
-    </div>
+    </div><br />
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -74,7 +73,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-
+<script src="~/Scripts/moment.min.js"></script>
     <script>
         $("#calcular").click(function () {
 
