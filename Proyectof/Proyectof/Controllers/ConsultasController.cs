@@ -1,6 +1,7 @@
 ﻿using Proyectof.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,29 @@ namespace Proyectof.Controllers
         {
             return View(db.Pacientes.ToList());
         }
-        public ActionResult Medicos()
+        [HttpPost]
+        public ActionResult Pacientes(bool? asegurado, string cedula = null, string nombre = null)
+        {
+            var busqueda = from s in db.Pacientes select s;
+            if (asegurado != null)
+            {
+                busqueda = busqueda.Where(f => f.asegurado == asegurado);
+            }
+            if (!string.IsNullOrEmpty(cedula))
+            {
+                busqueda = busqueda.Where(f => f.cedula.StartsWith(cedula));
+            }
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                busqueda = busqueda.Where(f => f.nombre.Equals(nombre));
+            }
+          
+          
+            return View(busqueda.ToList());
+        }
+
+
+            public ActionResult Medicos()
         {
             return View(db.Medicos.ToList());
         }
@@ -39,6 +62,14 @@ namespace Proyectof.Controllers
         {
             var altaMedica = db.AltaMedica.Include(a => a.Habitaciones).Include(a => a.Ingresos).Include(a => a.Pacientes);
             return View(altaMedica.ToList());
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
