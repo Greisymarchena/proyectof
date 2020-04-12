@@ -31,7 +31,7 @@ namespace Proyectof.Controllers
             }
             if (!string.IsNullOrEmpty(nombre))
             {
-                busqueda = busqueda.Where(f => f.nombre.Equals(nombre));
+                busqueda = busqueda.Where(f => f.nombre.StartsWith(nombre));
             }
           
           
@@ -39,10 +39,29 @@ namespace Proyectof.Controllers
         }
 
 
-            public ActionResult Medicos()
+        public ActionResult Medicos()
         {
             return View(db.Medicos.ToList());
         }
+        [HttpPost]
+        public ActionResult Medicos(string especialidad = null, string nombre = null)
+        {
+            var busqueda = from s in db.Medicos select s;
+
+            if (!string.IsNullOrEmpty(especialidad))
+            {
+                busqueda = busqueda.Where(f => f.especialidad.StartsWith(especialidad));
+            }
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                busqueda = busqueda.Where(f => f.nombre.StartsWith(nombre));
+            }
+
+
+            return View(busqueda.ToList());
+        }
+
+
         public ActionResult Habitaciones()
         {
             var habitaciones = db.Habitaciones.Include(h => h.Tipos);
