@@ -135,6 +135,24 @@ namespace Proyectof.Controllers
             var altaMedica = db.AltaMedica.Include(a => a.Habitaciones).Include(a => a.Ingresos).Include(a => a.Pacientes);
             return View(altaMedica.ToList());
         }
+        [HttpPost]
+        public ActionResult AltaMedica(DateTime? fecha,string paciente = null)
+        {
+            var busqueda = from s in db.AltaMedica select s;
+            if (fecha != null)
+            {
+                busqueda = busqueda.Where(f => f.fechaSalida == fecha);
+            }
+
+            if (!string.IsNullOrEmpty(paciente))
+            {
+                busqueda = busqueda.Where(f => f.Pacientes.nombre.StartsWith(paciente));
+            }
+            return View(busqueda.ToList());
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

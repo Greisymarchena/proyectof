@@ -5,53 +5,57 @@
 }
 
 <h2>Alta Medica</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por fecha de salida: <input type="date" class="form-control" name="fecha" id="fecha" />
+        
+        Buscar por paciente: <input type="text" class="form-control" name="paciente" id="paciente" /><br />
+    </p>
+    <input type="submit" value="Buscar" />
 
+}
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fechaIngreso)
+            Fecha de ingreso
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaSalida)
+            Fecha de salida
         </th>
         <th>
             @Html.DisplayNameFor(model => model.monto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Habitaciones.idHabitacion)
+            @Html.DisplayNameFor(model => model.Habitaciones.numero) de habitacion
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ingresos.idIngreso)
+            @Html.DisplayNameFor(model => model.Pacientes.nombre) de paciente
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pacientes.cedula)
-        </th>
-    
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.monto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Habitaciones.idHabitacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingresos.idIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
-        </td>
 
     </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Habitaciones.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.nombre)
+            </td>
+
+        </tr>
+    }
 
 </table>
