@@ -5,7 +5,19 @@
 }
 
 <h2>Habitaciones</h2>
+@using (Html.BeginForm())
+{
+<p>
+    Buscar por Tipos: <select name="Tipo" class="form-control" id="Tipo">
+        <option selected="selected">Sin establecer</option>
+        <option value="Doble">Doble</option>
+        <option value="Suite">Suite</option>
+        <option value="Privada">Privada</option>
+    </select><br />
+</p>
+    <input type="submit" value="Buscar" />
 
+}
 
 <table class="table">
     <tr>
@@ -13,21 +25,22 @@
             @Html.DisplayNameFor(model => model.numero)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipos.descripcion)
+            Tipos
         </th>
-      
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipos.descripcion)
-        </td>
 
     </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipos.descripcion)
+            </td>
+
+        </tr>
+    }
 
 </table>

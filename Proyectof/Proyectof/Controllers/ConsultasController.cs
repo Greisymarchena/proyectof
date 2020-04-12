@@ -67,6 +67,21 @@ namespace Proyectof.Controllers
             var habitaciones = db.Habitaciones.Include(h => h.Tipos);
             return View(habitaciones.ToList());
         }
+        [HttpPost]
+        public ActionResult Habitaciones(string tipo = null)
+        {
+            var busqueda = from s in db.Habitaciones select s;
+
+            if (!string.IsNullOrEmpty(tipo))
+            {
+                busqueda = busqueda.Where(f => f.Tipos.descripcion.StartsWith(tipo));
+            }
+
+            return View(busqueda.ToList());
+        }
+
+
+
         public ActionResult Citas()
         {
             var citas = db.Citas.Include(c => c.Medicos).Include(c => c.Pacientes);
