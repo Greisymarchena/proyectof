@@ -5,7 +5,15 @@
 }
 
 <h2>Ingresos</h2>
+@using (Html.BeginForm())
+{
+<p>
+    Buscar por fecha: <input type="date" class="form-control" name="fecha" id="fecha" />
+    Buscar por numero de habitacion: <input type="number" class="form-control" name="numero" id="numero" />
+</p>
+<input type="submit" value="Buscar" />
 
+}
 
 <table class="table">
     <tr>
@@ -13,7 +21,7 @@
             @Html.DisplayNameFor(model => model.fecha)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Habitaciones.idHabitacion)
+            @Html.DisplayNameFor(model => model.Habitaciones.numero) de habitacion
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pacientes.cedula)
@@ -21,19 +29,20 @@
 
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Habitaciones.idHabitacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Habitaciones.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.cedula)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>

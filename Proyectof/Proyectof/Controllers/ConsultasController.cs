@@ -114,7 +114,23 @@ namespace Proyectof.Controllers
             var ingresos = db.Ingresos.Include(i => i.Habitaciones).Include(i => i.Pacientes);
             return View(ingresos.ToList());
         }
-        public ActionResult AltaMedica()
+        [HttpPost]
+        public ActionResult Ingresos(DateTime? fecha, int? numero)
+        {
+            var busqueda = from s in db.Ingresos select s;
+            if (fecha != null)
+            {
+                busqueda = busqueda.Where(f => f.fecha == fecha);
+            }
+            if (numero != null)
+            {
+                busqueda = busqueda.Where(f => f.Habitaciones.numero == numero);
+            }
+            return View(busqueda.ToList());
+        }
+
+
+            public ActionResult AltaMedica()
         {
             var altaMedica = db.AltaMedica.Include(a => a.Habitaciones).Include(a => a.Ingresos).Include(a => a.Pacientes);
             return View(altaMedica.ToList());
