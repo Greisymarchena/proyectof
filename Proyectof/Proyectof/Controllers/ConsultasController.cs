@@ -87,6 +87,28 @@ namespace Proyectof.Controllers
             var citas = db.Citas.Include(c => c.Medicos).Include(c => c.Pacientes);
             return View(citas.ToList());
         }
+        [HttpPost]
+        public ActionResult Citas(DateTime? fecha, string medico = null, string paciente = null)
+        {
+            var busqueda = from s in db.Citas select s;
+            if (fecha != null)
+            {
+                busqueda = busqueda.Where(f => f.fecha == fecha);
+            }
+            if (!string.IsNullOrEmpty(medico))
+            {
+                busqueda = busqueda.Where(f => f.Medicos.nombre.StartsWith(medico));
+            }
+            if (!string.IsNullOrEmpty(paciente))
+            {
+                busqueda = busqueda.Where(f => f.Pacientes.nombre.StartsWith(paciente));
+            }
+            return View(busqueda.ToList());
+        }
+
+
+
+
         public ActionResult Ingresos()
         {
             var ingresos = db.Ingresos.Include(i => i.Habitaciones).Include(i => i.Pacientes);

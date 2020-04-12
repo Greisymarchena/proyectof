@@ -5,7 +5,16 @@
 }
 
 <h2>Citas</h2>
+@using (Html.BeginForm())
+{
+<p>
+    Buscar por fecha: <input type="date" class="form-control" name="fecha" id="fecha" />
+    Buscar por medico: <input type="text" class="form-control" name="medico" id="medico" />
+    Buscar por paciente: <input type="text" class="form-control" name="paciente" id="paciente" /><br />
+</p>
+    <input type="submit" value="Buscar" />
 
+}
 
 <table class="table">
     <tr>
@@ -19,27 +28,28 @@
             @Html.DisplayNameFor(model => model.Medicos.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pacientes.cedula)
+            Paciente
         </th>
 
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hora)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medicos.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicos.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.nombre)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
