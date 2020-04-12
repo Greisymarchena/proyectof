@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Proyectof.Models.Citas>
+
+@{
+    ViewBag.Title = "Citas";
+}
+
+<h2>Citas</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medicos.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pacientes.cedula)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medicos.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pacientes.cedula)
+        </td>
+
+    </tr>
+}
+
+</table>

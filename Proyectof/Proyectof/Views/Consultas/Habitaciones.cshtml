@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Proyectof.Models.Habitaciones>
+
+@{
+    ViewBag.Title = "Habitaciones";
+}
+
+<h2>Habitaciones</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.descripcion)
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipos.descripcion)
+        </td>
+
+    </tr>
+}
+
+</table>

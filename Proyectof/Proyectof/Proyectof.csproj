@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AltaMedicaController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\HabitacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngresosController.cs" />
@@ -262,6 +263,12 @@
     <Content Include="Views\Pacientes\Index.cshtml" />
     <Content Include="Views\AltaMedica\NewIndex.cshtml" />
     <Content Include="Views\AltaMedica\Alta.cshtml" />
+    <Content Include="Views\Consultas\Pacientes.cshtml" />
+    <Content Include="Views\Consultas\Medicos.cshtml" />
+    <Content Include="Views\Consultas\Habitaciones.cshtml" />
+    <Content Include="Views\Consultas\Citas.cshtml" />
+    <Content Include="Views\Consultas\Ingresos.cshtml" />
+    <Content Include="Views\Consultas\AltaMedica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
