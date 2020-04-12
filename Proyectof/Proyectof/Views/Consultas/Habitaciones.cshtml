@@ -7,40 +7,63 @@
 <h2>Habitaciones</h2>
 @using (Html.BeginForm())
 {
-<p>
-    Buscar por Tipos: <select name="Tipo" class="form-control" id="Tipo">
-        <option selected="selected">Sin establecer</option>
-        <option value="Doble">Doble</option>
-        <option value="Suite">Suite</option>
-        <option value="Privada">Privada</option>
-    </select><br />
-</p>
+    <p>
+        Buscar por Tipos: <select name="Tipo" class="form-control" id="Tipo">
+            <option selected="selected">Sin establecer</option>
+            <option value="Doble">Doble</option>
+            <option value="Suite">Suite</option>
+            <option value="Privada">Privada</option>
+        </select><br />
+    </p>
     <input type="submit" value="Buscar" />
 
 }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.numero)
-        </th>
-        <th>
-            Tipos
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<br />
+<div id="Reporte">
+    <input type="button" onclick="DescargarPDF('Reporte','Consulta Habitaciones')" value="Descargar PDF" />
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipos.descripcion)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.numero)
+            </th>
+            <th>
+                Tipos
+            </th>
 
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipos.descripcion)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+    @section Scripts{
+
+        <script src="~/Scripts/jspdf.debug.js"></script>
+
+
+        <script>
+
+
+            function DescargarPDF(ContenidoID, nombre) {
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                html = $('#' + ContenidoID).html();
+                specialElementHandlers = {};
+                margins = { top: 10, bottom: 20, left: 20, width: 522 };
+                pdf.fromHTML(html, margins.left, margins.top, { 'width': margins.width }, function (dispose) { pdf.save(nombre + '.pdf'); }, margins);
+            }
+
+        </script>
+
+
+    }

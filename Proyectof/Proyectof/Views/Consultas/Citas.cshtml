@@ -7,49 +7,72 @@
 <h2>Citas</h2>
 @using (Html.BeginForm())
 {
-<p>
-    Buscar por fecha: <input type="date" class="form-control" name="fecha" id="fecha" />
-    Buscar por medico: <input type="text" class="form-control" name="medico" id="medico" />
-    Buscar por paciente: <input type="text" class="form-control" name="paciente" id="paciente" /><br />
-</p>
+    <p>
+        Buscar por fecha: <input type="date" class="form-control" name="fecha" id="fecha" />
+        Buscar por medico: <input type="text" class="form-control" name="medico" id="medico" />
+        Buscar por paciente: <input type="text" class="form-control" name="paciente" id="paciente" /><br />
+    </p>
     <input type="submit" value="Buscar" />
 
 }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hora)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicos.nombre)
-        </th>
-        <th>
-            Paciente
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<br />
+<div id="Reporte">
+    <input type="button" onclick="DescargarPDF('Reporte','Consulta Citas')" value="Descargar PDF" />
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicos.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pacientes.nombre)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicos.nombre)
+            </th>
+            <th>
+                Paciente
+            </th>
 
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medicos.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pacientes.nombre)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+    @section Scripts{
+
+        <script src="~/Scripts/jspdf.debug.js"></script>
+
+
+        <script>
+
+
+            function DescargarPDF(ContenidoID, nombre) {
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                html = $('#' + ContenidoID).html();
+                specialElementHandlers = {};
+                margins = { top: 10, bottom: 20, left: 20, width: 522 };
+                pdf.fromHTML(html, margins.left, margins.top, { 'width': margins.width }, function (dispose) { pdf.save(nombre + '.pdf'); }, margins);
+            }
+
+        </script>
+
+
+    }
