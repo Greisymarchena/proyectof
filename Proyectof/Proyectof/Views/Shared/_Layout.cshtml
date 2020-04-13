@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Sistema Hospitalario</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,22 +17,57 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Sistema Hospitalario", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <li class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>..................................</li>
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Procesos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Citas/index">Citas</a></li>
+                            <li><a href="~/Ingresos/index">Ingresos</a></li>
+                            <li><a href="~/AltaMedica/Newindex">Altas Medicas</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mantenimientos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Medicos/index">Medicos</a></li>
+                            <li><a href="~/Pacientes/index">Pacientes</a></li>
+                            <li><a href="~/Habitaciones/index">Habitaciones</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Consultas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Consultas/Citas">Citas</a></li>
+                            <li><a href="~/Consultas/Ingresos">Ingresos</a></li>
+                            <li><a href="~/Consultas/Medicos">Medicos</a></li>
+                            <li><a href="~/Consultas/Pacientes">Pacientes</a></li>
+                            <li><a href="~/Consultas/AltaMedica">Altas Medicas</a></li>
+                            <li><a href="~/Consultas/Habitaciones">Habitaciones</a></li>
+                        </ul>
+                        
+                    </li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
-            </div>
+            </li>
         </div>
     </div>
+    
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Sistema Hospitalario</p>
         </footer>
     </div>
 
