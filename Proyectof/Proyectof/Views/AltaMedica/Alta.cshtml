@@ -77,41 +77,38 @@
     @Scripts.Render("~/bundles/jqueryval")
 
 <script src="~/Scripts/moment.min.js"></script>
-    <script>
-        $("#calcular").click(function () {
+<script>
+    $("#calcular").click(function () {
 
-            f1 = $('#fechaIngreso').val().substr(0, 9);
-            f2 = $('#fechaSalida').val();
+        f1 = $('#fechaIngreso').val().substr(0, 9);
+        f2 = $('#fechaSalida').val();
 
-            a = moment(f1).format();
-            b = a.substr(0, 10);
+        const date = f1;
+        const [day, month, year] = date.split('/');
 
-            const date = b;
-            const [year, day, month] = date.split('-');
+        c = (year + "-" + month + "-" + day);
 
-            c = (year + "-" + month + "-" + day);
+        var fecha1 = moment(c);
+        var fecha2 = moment(f2);
 
-            var fecha1 = moment(c);
-            var fecha2 = moment(f2);
+        var d = (fecha2.diff(fecha1, 'days'));
 
-            var d = (fecha2.diff(fecha1, 'days'));
+        var TH = $('#idHabitacion').val();
 
-            var TH = $('#idHabitacion').val();
+        if (TH = 1) {
+            $('#monto').val(d * 250);
+        }
+        else if (TH = 2) {
 
-            if (TH = 1) {
-                $('#monto').val(d * 250);
-            }
-            else if (TH = 2) {
+            $('#monto').val(d * 450);
+        }
+        else {
+            $('#monto').val(d * 650);
+        }
 
-                $('#monto').val(d * 450);
-            }
-            else {
-                $('#monto').val(d * 650);
-            }
+    })
 
-        })
-
-    </script>
+</script>
 }
 
 

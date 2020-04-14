@@ -17,23 +17,29 @@
         <th>
             Tipo
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.precio)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipos.descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idHabitacion }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.idHabitacion }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.idHabitacion })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.numero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tipos.descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tipos.precio)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.idHabitacion }) |
+        @Html.ActionLink("Detalles", "Details", new { id = item.idHabitacion }) |
+        @Html.ActionLink("Borrar", "Delete", new { id = item.idHabitacion })
+    </td>
+</tr>
 }
 
 </table>
